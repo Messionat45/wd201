@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      input#name:invalid :focus {
+        border: 1px solid red;
+      }
+      input#email:invalid:focus {
+        border: 1px solid red;
+      }
+      
+    </style>
+  </head>
+
+  <body>
+    <form id="user-form">
+      <label for="name">Name</label>
+      <input required type="text" id="name" name="name" /><br />
+
+      <label for="email">Email</label>
+      <input required type="email" id="email" name="email" /><br />
+
+      <label for="password">Password</label>
+      <input required type="password" id="password" name="password" /><br />
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required min="" max=""/><br />
+
+      <input type="checkbox" id="acceptTerms" name="acceptTerms" />
+      <label for="acceptTerms">Accept Terms & Conditions</label><br />
+
+      <button type="submit">Submit</button><br />
+    </form>
+
+
+   <!--   <script>
+        var today = new Date();
+        var minDate = new Date(today.getFullYear() - 55, today.getmonth(),today.getDate());
+        var maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+        document.getElementById("dob").setAttribute("min", minDate.toISOString().slice(0,10));
+        document.getElementById("dob").setAttribute("max", maxDate.toISOString().slice(0,10));
+      </script>
+
+--->
+  <!--  <script>
+      const email = document.getElementById("email");
+      email.addEventListener("input", () => validate(email));
+
+      const submit = document.getElementById("submit");
+      submit.addEventListener("click", () => validate(email));
+
+      function validate(element) {
+        if (element.validity.typeMissmatch) {
+          element.setCustomValidity("The Email is not in the right format!!!");
+          element.reportValidity();
+        } else {
+          element.setCustomValidity("");
+        }
+      }-->
+      <div
+        class="relative bg-white px-96 mt-5 pt-10 pb-8 shadow-xl ring-l ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-10">
+      </div class="mx-auto">
+        <h2 class="text-3tl text-centre font-bold leading-tight">Entries</h2>
+        <div class="divide-y divide-gray-300/50" id="user-entries"></div>
+      </div>
+
+
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>
