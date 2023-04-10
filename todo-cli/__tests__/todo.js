@@ -1,13 +1,14 @@
+/* eslint-disable no-undef */
 const todoList = require("../todo");
 const { all, markAsComplete, add, overdue, dueLater, dueToday } = todoList();
 
 describe("Todolist Test Suite", () => {
   beforeAll(() => {
-    add({
-      title: "Test todo",
-      completed: false,
-      duDate: new Date().toISOString().slice(0, 10),
-    });
+    //  add({
+    //  title: "Test todo",
+    // completed: false,
+    // duDate: new Date().toISOString().slice(0, 10),
+    //});
   });
   test("Should add new todo", () => {
     const todoItemsCount = all.length;
