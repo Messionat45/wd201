@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       const ODItems = overdueList
         .map((todo) => todo.displayableString())
         .join("\n");
-      console.log(ODItems);
+      console.log(ODItems).trim();
       console.log("\n");
 
       console.log("Due Today");
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       const DTItems = DueTodayList.map((todo) =>
         todo.displayableString().replace(/ \d{4}-\d{2}-\d{2}/, "")
       ).join("\n");
-      console.log(DTItems);
+      console.log(DTItems).trim();
       console.log("\n");
 
       console.log("Due Later");
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       const DLItems = DueLaterList.map((todo) => todo.displayableString()).join(
         "\n"
       );
-      console.log(DLItems);
+      console.log(DLItems).trim();
     }
 
     //------------------------------------------------------
