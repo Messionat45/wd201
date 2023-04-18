@@ -21,16 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       const ODItems = overdueList
         .map((todo) => todo.displayableString())
         .join("\n");
-      console.log(ODItems).trim();
+      console.log(ODItems);
       console.log("\n");
 
       console.log("Due Today");
       // FILL IN HERE
       const DueTodayList = await Todo.dueToday();
-      const DTItems = DueTodayList.map((todo) =>
-        todo.displayableString().replace(/ \d{4}-\d{2}-\d{2}/, "")
-      ).join("\n");
-      console.log(DTItems).trim();
+      const DTItems = DueTodayList.map((todo) => todo.displayableString()).join(
+        "\n"
+      );
+      console.log(DTItems);
       console.log("\n");
 
       console.log("Due Later");
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       const DLItems = DueLaterList.map((todo) => todo.displayableString()).join(
         "\n"
       );
-      console.log(DLItems).trim();
+      console.log(DLItems);
     }
 
     //------------------------------------------------------
@@ -102,7 +102,11 @@ module.exports = (sequelize, DataTypes) => {
 
     displayableString() {
       let checkbox = this.completed ? "[x]" : "[ ]";
-      return `${this.id}. ${checkbox} ${this.title} ${this.dueDate}`;
+      return `${this.id}. ${checkbox} ${this.title} ${
+        this.dueDate.toString() === new Date().toISOString().slice(0, 10)
+          ? ""
+          : this.dueDate
+      }`.trim();
     }
 
     //------------------------------------------------------------------my extra edit
@@ -110,6 +114,8 @@ module.exports = (sequelize, DataTypes) => {
     //  let checkbox = this.completed ? "[x]" : "[ ]";
     //  return `${this.id}. ${checkbox} ${this.title}`;
     //}
+
+    //------------------------------------------------------------------------------------
   }
   Todo.init(
     {
