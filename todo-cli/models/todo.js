@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const { Op } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
@@ -40,11 +41,12 @@ module.exports = (sequelize, DataTypes) => {
       );
       console.log(DLItems);
     }
+
+    //------------------------------------------------------
     static async overdue() {
       const todos = await Todo.findAll({
         where: {
-          dueDate: dueDate < new Date().toISOString().slice(0, 10),
-          completed: false,
+          dueDate: { [Op.lt]: new Date() },
         },
         order: [["id", "ASC"]],
       });
@@ -55,8 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     static async dueToday() {
       const todos = await Todo.findAll({
         where: {
-          dueDate: dueDate === new Date().toISOString().slice(0, 10),
-          completed: false,
+          dueDate: { [Op.eq]: new Date() },
         },
         order: [["id", "ASC"]],
       });
@@ -67,8 +68,7 @@ module.exports = (sequelize, DataTypes) => {
     static async dueLater() {
       const todos = await Todo.findAll({
         where: {
-          dueDate: dueDate > new Date().toISOString().slice(0, 10),
-          completed: false,
+          dueDate: { [Op.gt]: new Date() },
         },
         order: [["id", "ASC"]],
       });
@@ -77,11 +77,14 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static async markAsComplete(id) {
-      const todos = Todo.update({
-        where: {
-          id: id,
-        },
-      });
+      const todos = Todo.update(
+        { completed: true },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
       return todos;
       // FILL IN HERE TO MARK AN ITEM AS COMPLETE
     }
