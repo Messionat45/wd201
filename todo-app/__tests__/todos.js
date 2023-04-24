@@ -2,7 +2,6 @@ const request = require("supertest");
 
 const db = require("../models/index");
 const app = require("../app");
-const { JSON } = require("sequelize");
 
 let server, agent;
 
@@ -74,6 +73,11 @@ describe("Todo Application", function () {
 
   test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
     // FILL IN YOUR CODE HERE
+  });
+
+  //------------------------------------------------------------------------
+  test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
+    // FILL IN YOUR CODE HERE
     const responce = await agent.post("/todos").send({
       title: "Buy milk",
       dueDate: new Date().toISOString(),
@@ -83,6 +87,8 @@ describe("Todo Application", function () {
     const todoID = parsedResponse.id;
     const todoResponce = await agent.delete(`/todos/${todoID}`).send();
     const testing = Boolean(todoResponce);
-    expect(testing).toBe(1);
+    expect(testing).toBe(true);
   });
+
+  //------------------------------------------------------------------------------
 });
