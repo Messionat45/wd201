@@ -15,8 +15,8 @@ app.get("/todos", async function (_request, response) {
   try {
     const todo = await Todo.findAll();
     console.log(todo.every((todoitem) => todoitem instanceof Todo)); // true
-    console.log("All todos:", JSON.stringify(users, null, 2));
-    return responce.json(todo);
+    console.log("All todos:", JSON.stringify(todo, null, 2));
+    return response.json(todo);
   } catch (error) {
     console.log(error);
     return response.status(422).json(error);
