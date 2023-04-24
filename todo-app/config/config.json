@@ -1,5 +1,4 @@
 {
-  "d{
   "development": {
     "username": "postgres",
     "password": "madhukar127",
@@ -22,26 +21,3 @@
     "dialect": "mysql"
   }
 }
-evelopment": {
-    "username": "postgres",
-    "password": "madhukar127",
-    "database": "wd-todo-dev",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  },
-  "test": {
-    "username": "postgres",
-    "password": "madhukar127",
-    "database": "wd-todo-test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
-
