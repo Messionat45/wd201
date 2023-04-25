@@ -72,7 +72,7 @@ app.delete("/todos/:id", async function (request, response) {
       },
     });
     //return responce.JSON(todoel);
-    return responce.JSON(todoDel ? true : false);
+    return response.send(todoDel ? true : false);
   } catch (error) {
     console.log(error);
     return response.status(422).json(error);
