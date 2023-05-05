@@ -49,17 +49,15 @@
           </div>
         </form>
         <div>
-          <h5>Overdue</h5>
-          <span
-            id="count-overdue"
-            style="float: right"
-            class="bg-green-600"
-          ></span>
           <% let countOverdue = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate < new
           Date().toISOString().slice(0, 10)) { %> <% countOverdue++ %> <% } %>
           <% } %>
-          <div id="count-overdue"><%= countOverdue %></div>
+
+          <span id="count-overdue" style="float: right" class="bg-green-600"
+            ><div id="count-overdue"><%= countOverdue %></div></span
+          >
+          <h5>Overdue</h5>
 
           <ul class="list-none">
             <li class="Todo-Item">
@@ -126,45 +124,28 @@
             </li>
           </ul>
 
-          <h5>Due Today</h5>
-          <span
-            id="count-due-today"
-            style="float: right"
-            class="bg-green-600"
-          ></span>
           <% let countDueToday = 0 %> <% for (let i = 0; i <
           allTodos.length;i++){ %> <% if (allTodos[i].dueDate === new
           Date().toISOString().slice(0, 10)){ %> <% countDueToday++ %> <% } %>
           <%} %>
-          <div id="count-due-today"><%= countDueToday %></div>
+          <span id="count-due-today" style="float: right" class="bg-green-600"
+            ><div id="count-due-today"><%= countDueToday %></div></span
+          >
+
+          <h5>Due Today</h5>
 
           <!--//      ------------------------------------------------------------------------------------------------------------>
 
-          <h5>Due Later</h5>
-          <span
-            id="count-due-later"
-            style="float: right"
-            class="bg-green-600"
-          ></span>
           <% let countDueLater = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate > new
           Date().toISOString().slice(0, 10)) { %> <% countDueLater++ %> <% } %>
           <% } %>
-          <div id="count-due-later"><%= countDueLater %></div>
+          <span id="count-due-later" style="float: right" class="bg-green-600">
+            <div id="count-due-later"><%= countDueLater %></div></span
+          >
+          <h5>Due Later</h5>
         </div>
       </div>
     </div>
-    <!----------------------------------------------------------------------------- lvl 8 html css
-    <%- include('header.ejs') %> <br />
-    <%- include('todos.ejs') %> <br />
-    <%-include('footer.ejs') %>
-
-    < <table>
-      <% for ( var i=0; i < allTodos.length; i++) { %>
-      <tr>
-        <td><%= allTodos[i].title %></td>
-      </tr>
-      <% } %>
-    </table>  -->
   </body>
 </html>
