@@ -49,12 +49,15 @@
           </div>
         </form>
         <div>
-          <% let overdueCount = 0 %> <% for (let i = 0; i < allTodos.length;
+          <% let count-overdue = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate < new
-          Date().toISOString().slice(0, 10)) { %> <% overdueCount++ %> <% } %>
+          Date().toISOString().slice(0, 10)) { %> <% count-overdue++ %> <% } %>
           <% } %>
 
-          <h5>Overdue<%= overdueCount %></h5>
+          <h5>
+            Overdue <span><h5><%= count-overdue %></h5></span>
+          </h5>
+
           <ul class="list-none">
             <li class="Todo-Item">
               <div
@@ -119,21 +122,25 @@
               </div>
             </li>
           </ul>
-          <% let dueTodayCount = 0 %> <% for (let i = 0; i <
+          <% let count-due-today = 0 %> <% for (let i = 0; i <
           allTodos.length;i++){ %> <% if (allTodos[i].dueDate === new
-          Date().toISOString().slice(0, 10)){ %> <% dueTodayCount++ %> <% } %>
+          Date().toISOString().slice(0, 10)){ %> <% count-due-today++ %> <% } %>
           <%} %>
 
-          <h5>Due Today<%= dueTodayCount %></h5>
+          <h5>
+            Due Today<span><h5><%= count-due-today %></h5></span>
+          </h5>
 
           <!--//      ------------------------------------------------------------------------------------------------------------>
 
-          <% let dueLaterCount = 0 %> <% for (let i = 0; i < allTodos.length;
+          <% let count-due-later = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate > new
-          Date().toISOString().slice(0, 10)) { %> <% dueLaterCount++ %> <% } %>
-          <% } %>
+          Date().toISOString().slice(0, 10)) { %> <% count-due-later++ %> <% }
+          %> <% } %>
 
-          <h5>Due Later<%= dueLaterCount %></h5>
+          <h5>
+            Due Later<span><h5><%= count-due-later %></h5></span>
+          </h5>
         </div>
       </div>
     </div>
