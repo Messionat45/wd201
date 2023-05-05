@@ -13,6 +13,15 @@
     <div class="grid grid-cols-6">
       <div class="col-start-3 col-span-2">
         <%- include('header.ejs') %>
+
+        <!--//      ------------------------------------------------------------------------------------------------------------>
+
+        <!---     ----------------------------------------------------------------------------------------------------------------------->
+
+        <!--    ------------------------------------------------------------------------------------------------------------------------>
+
+        <!---     ----------------------------------------------------------------------------------------------------------------------->
+
         <form action="">
           <div class="flex gap-2 py-4">
             <div class="flex-auto">
@@ -40,7 +49,12 @@
           </div>
         </form>
         <div>
-          <h5>Overdue</h5>
+          <% let overdueCount = 0 %> <% for (let i = 0; i < allTodos.length;
+          i++) { %> <% if (allTodos[i].dueDate < new
+          Date().toISOString().slice(0, 10)) { %> <% overdueCount++ %> <% } %>
+          <% } %>
+
+          <h5>Overdue <%= overdueCount %></h5>
           <ul class="list-none">
             <li class="Todo-Item">
               <div
@@ -105,8 +119,21 @@
               </div>
             </li>
           </ul>
-          <h5>Due Today</h5>
-          <h5>Due Later</h5>
+          <% let dueTodayCount = 0 %> <% for (let i = 0; i <
+          allTodos.length;i++){ %> <% if (allTodos[i].dueDate === new
+          Date().toISOString().slice(0, 10)){ %> <% dueTodayCount++ %> <% } %>
+          <%} %>
+
+          <h5>Due Today <%=dueTodayCount %></h5>
+
+          <!--//      ------------------------------------------------------------------------------------------------------------>
+
+          <% let dueLaterCount = 0 %> <% for (let i = 0; i < allTodos.length;
+          i++) { %> <% if (allTodos[i].dueDate > new
+          Date().toISOString().slice(0, 10)) { %> <% dueLaterCount++ %> <% } %>
+          <% } %>
+
+          <h5>Due Later <%= dueLaterCount %></h5>
         </div>
       </div>
     </div>
