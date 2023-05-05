@@ -49,14 +49,17 @@
           </div>
         </form>
         <div>
-          <% let count-overdue = 0 %> <% for (let i = 0; i < allTodos.length;
+          <h5>Overdue</h5>
+          <span
+            id="count-overdue"
+            style="float: right"
+            class="bg-green-600"
+          ></span>
+          <% let countOverdue = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate < new
-          Date().toISOString().slice(0, 10)) { %> <% count-overdue++ %> <% } %>
+          Date().toISOString().slice(0, 10)) { %> <% countOverdue++ %> <% } %>
           <% } %>
-
-          <h5>
-            Overdue <span><h5><%= count-overdue %></h5></span>
-          </h5>
+          <div id="count-overdue"><%= countOverdue %></div>
 
           <ul class="list-none">
             <li class="Todo-Item">
@@ -122,25 +125,32 @@
               </div>
             </li>
           </ul>
-          <% let count-due-today = 0 %> <% for (let i = 0; i <
-          allTodos.length;i++){ %> <% if (allTodos[i].dueDate === new
-          Date().toISOString().slice(0, 10)){ %> <% count-due-today++ %> <% } %>
-          <%} %>
 
-          <h5>
-            Due Today<span><h5><%= count-due-today %></h5></span>
-          </h5>
+          <h5>Due Today</h5>
+          <span
+            id="count-due-today"
+            style="float: right"
+            class="bg-green-600"
+          ></span>
+          <% let countDueToday = 0 %> <% for (let i = 0; i <
+          allTodos.length;i++){ %> <% if (allTodos[i].dueDate === new
+          Date().toISOString().slice(0, 10)){ %> <% countDueToday++ %> <% } %>
+          <%} %>
+          <div id="count-due-today"><%= countDueToday %></div>
 
           <!--//      ------------------------------------------------------------------------------------------------------------>
 
-          <% let count-due-later = 0 %> <% for (let i = 0; i < allTodos.length;
+          <h5>Due Later</h5>
+          <span
+            id="count-due-later"
+            style="float: right"
+            class="bg-green-600"
+          ></span>
+          <% let countDueLater = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate > new
-          Date().toISOString().slice(0, 10)) { %> <% count-due-later++ %> <% }
-          %> <% } %>
-
-          <h5>
-            Due Later<span><h5><%= count-due-later %></h5></span>
-          </h5>
+          Date().toISOString().slice(0, 10)) { %> <% countDueLater++ %> <% } %>
+          <% } %>
+          <div id="count-due-later"><%= countDueLater %></div>
         </div>
       </div>
     </div>
@@ -149,7 +159,7 @@
     <%- include('todos.ejs') %> <br />
     <%-include('footer.ejs') %>
 
-    <!-- <table>
+    < <table>
       <% for ( var i=0; i < allTodos.length; i++) { %>
       <tr>
         <td><%= allTodos[i].title %></td>
