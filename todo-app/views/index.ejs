@@ -54,7 +54,7 @@
           Date().toISOString().slice(0, 10)) { %> <% overdueCount++ %> <% } %>
           <% } %>
 
-          <h5>Overdue <%= overdueCount %></h5>
+          <h5>Overdue<%= overdueCount %></h5>
           <ul class="list-none">
             <li class="Todo-Item">
               <div
@@ -124,7 +124,7 @@
           Date().toISOString().slice(0, 10)){ %> <% dueTodayCount++ %> <% } %>
           <%} %>
 
-          <h5>Due Today <%=dueTodayCount %></h5>
+          <h5>Due Today<%= dueTodayCount %></h5>
 
           <!--//      ------------------------------------------------------------------------------------------------------------>
 
@@ -133,7 +133,7 @@
           Date().toISOString().slice(0, 10)) { %> <% dueLaterCount++ %> <% } %>
           <% } %>
 
-          <h5>Due Later <%= dueLaterCount %></h5>
+          <h5>Due Later<%= dueLaterCount %></h5>
         </div>
       </div>
     </div>
