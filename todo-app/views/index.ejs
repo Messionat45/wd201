@@ -14,19 +14,20 @@
       <div class="col-start-3 col-span-2">
         <%- include('header.ejs') %>
 
-        <!--//      ------------------------------------------------------------------------------------------------------------>
+        <!-- //      ------------------------------------------------------------------------------------------------------------>
 
         <!---     ----------------------------------------------------------------------------------------------------------------------->
 
         <!--    ------------------------------------------------------------------------------------------------------------------------>
 
-        <!---     ----------------------------------------------------------------------------------------------------------------------->
+        <!---     --------------------------------------------------------------------------------------------------------------------- -->
 
-        <form action="">
+        <form action="/todos" method="post">
           <div class="flex gap-2 py-4">
             <div class="flex-auto">
               <input
                 type="text"
+                name="title"
                 placeholder="what's next?"
                 class="border border-gray-300 rounded text-gray-900 w-full p-2 text-sm"
                 required
@@ -35,6 +36,7 @@
             <div class="flex-auto">
               <input
                 type="date"
+                name="dueDate"
                 class="=border border-gray-300 rounded text-gray-900 w-full p-2 text-sm leading-4"
               />
             </div>
@@ -49,12 +51,16 @@
           </div>
         </form>
         <div>
-          <% let overdueCount = 0 %> <% for (let i = 0; i < allTodos.length;
+          <% let countOverdue = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate < new
-          Date().toISOString().slice(0, 10)) { %> <% overdueCount++ %> <% } %>
+          Date().toISOString().slice(0, 10)) { %> <% countOverdue++ %> <% } %>
           <% } %>
 
-          <h5>Overdue <%= overdueCount %></h5>
+          <span id="count-overdue" style="float: right" class="bg-green-600"
+            ><div id="count-overdue"><%= countOverdue %></div></span
+          >
+          <h5>Overdue</h5>
+
           <ul class="list-none">
             <li class="Todo-Item">
               <div
@@ -119,33 +125,29 @@
               </div>
             </li>
           </ul>
-          <% let dueTodayCount = 0 %> <% for (let i = 0; i <
+
+          <% let countDueToday = 0 %> <% for (let i = 0; i <
           allTodos.length;i++){ %> <% if (allTodos[i].dueDate === new
-          Date().toISOString().slice(0, 10)){ %> <% dueTodayCount++ %> <% } %>
+          Date().toISOString().slice(0, 10)){ %> <% countDueToday++ %> <% } %>
           <%} %>
+          <span id="count-due-today" style="float: right" class="bg-green-600"
+            ><div id="count-due-today"><%= countDueToday %></div></span
+          >
 
-          <h5>Due Today <%=dueTodayCount %></h5>
+          <h5>Due Today</h5>
 
-          <% let dueLaterCount = 0 %> <% for (let i = 0; i < allTodos.length;
+          <!--//      ------------------------------------------------------------------------------------------------------------>
+
+          <% let countDueLater = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate > new
-          Date().toISOString().slice(0, 10)) { %> <% dueLaterCount++ %> <% } %>
+          Date().toISOString().slice(0, 10)) { %> <% countDueLater++ %> <% } %>
           <% } %>
-
-          <h5>Due Later <%= dueLaterCount %></h5>
+          <span id="count-due-later" style="float: right" class="bg-green-600">
+            <div id="count-due-later"><%= countDueLater %></div></span
+          >
+          <h5>Due Later</h5>
         </div>
       </div>
     </div>
-    <!----------------------------------------------------------------------------- lvl 8 html css
-    <%- include('header.ejs') %> <br />
-    <%- include('todos.ejs') %> <br />
-    <%-include('footer.ejs') %>
-
-    <!-- <table>
-      <% for ( var i=0; i < allTodos.length; i++) { %>
-      <tr>
-        <td><%= allTodos[i].title %></td>
-      </tr>
-      <% } %>
-    </table>  -->
   </body>
 </html>
