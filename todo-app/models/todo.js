@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
     }
-    static completedTodo() {
+    static completed() {
       return this.findAll({
         where: {
           completed: true,
@@ -61,8 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     setCompletionStatus(bool) {
-      let status = this.update({ completed: bool });
-      return status;
+      return this.update({ completed: bool });
     }
 
     //------------------------------------------------------------------------------------
