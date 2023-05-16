@@ -103,7 +103,8 @@
           <h5>Overdue</h5>
           <ul class="list-none">
             <% for (let i = 0; i < allTodos.length; i++) { %> <% if
-            (allTodos[i].dueDate < new Date().toISOString().slice(0, 10)){ %>
+            (allTodos[i].dueDate < new Date().toISOString().slice(0, 10) &&
+            allTodos[i].completed == false){ %>
             <li class="Todo-Item">
               <div
                 class="flex items-center w-fitmy-2 px-2 py-1 rounded hover:bg-purple-50"
@@ -155,7 +156,8 @@
           <h5>Due Today</h5>
           <ul class="list-none">
             <% for (let i = 0; i < allTodos.length; i++) { %> <% if
-            (allTodos[i].dueDate === new Date().toISOString().slice(0, 10)){ %>
+            (allTodos[i].dueDate === new Date().toISOString().slice(0, 10) &&
+            allTodos[i].completed == false ){ %>
             <li class="Todo-Item">
               <div
                 class="flex items-center w-fitmy-2 px-2 py-1 rounded hover:bg-purple-50"
@@ -207,7 +209,8 @@
           <h5>Due Later</h5>
           <ul class="list-none">
             <% for (let i = 0; i < allTodos.length; i++) { %> <% if
-            (allTodos[i].dueDate > new Date().toISOString().slice(0, 10)) { %>
+            (allTodos[i].dueDate > new Date().toISOString().slice(0, 10) &&
+            allTodos[i].completed == false) { %>
             <li class="Todo-Item">
               <div
                 class="flex items-center w-fitmy-2 px-2 py-1 rounded hover:bg-purple-50"
@@ -247,12 +250,12 @@
             <% } %> <% } %>
           </ul>
 
-          <!---    //------------------------------------------------------------------------>
+          <!---    //---------------------------------completed--------------------------------------->
 
-          <h5>Due Later</h5>
+          <h5>Completed Items</h5>
           <ul class="list-none">
             <% for (let i = 0; i < allTodos.length; i++) { %> <% if
-            (allTodos[i].dueDate > new Date().toISOString().slice(0, 10)) { %>
+            (allTodos[i].completed == true) { %>
             <li class="Todo-Item">
               <div
                 class="flex items-center w-fitmy-2 px-2 py-1 rounded hover:bg-purple-50"
