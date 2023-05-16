@@ -15,14 +15,23 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (request, response) => {
+  // const overdue = await Todo.overdue();
+  // const dueToday = await Todo.dueToday();
+  // const dueLater = await Todo.dueLater();
   const allTodos = await Todo.getTodos();
   if (request.accepts("html")) {
     response.render("index", {
+      // overdue,
+      // dueToday,
+      // dueLater,
       allTodos,
       csrfToken: request.csrfToken(),
     });
   } else {
     response.json({
+      // overdue,
+      // dueToday,
+      // dueLater,
       allTodos,
     });
   }
