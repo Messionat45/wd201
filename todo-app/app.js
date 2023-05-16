@@ -19,12 +19,14 @@ app.get("/", async (request, response) => {
   const dueToday = await Todo.dueToday();
   const dueLater = await Todo.dueLater();
   const allTodos = await Todo.getTodos();
+  const completed = await Todo.completedTodo();
   if (request.accepts("html")) {
     response.render("index", {
       overdue,
       dueToday,
       dueLater,
       allTodos,
+      completed,
       csrfToken: request.csrfToken(),
     });
   } else {
@@ -74,7 +76,10 @@ app.get("/todos/:id", async function (request, response) {
 
 app.post("/todos", async function (request, response) {
   try {
-    await Todo.addTodo(request.body);
+    await Todo.addTodo({
+      title: request.body.title,
+      dueDate: request.body.dueDate,
+    });
     return response.redirect("/");
   } catch (error) {
     console.log(error);
@@ -82,6 +87,23 @@ app.post("/todos", async function (request, response) {
   }
 });
 
+///--------------------------------------------------------------------
+
+//-----------------------------------------------------------------
+
+// app.put("/todos/:id/markAsCompleted", async function (request, response) {
+//   console.log("We have to update a Todo with ID: ", request.params.id);
+//   const todo = await Todo.findByPk(request.params.id);
+//   try {
+//     const updatedTodo = await todo.markAsCompleted();
+//     return response.json(updatedTodo);
+//   } catch (error) {
+//     console.log(error);
+//     return response.status(422).json(error);
+//   }
+// });
+
+//---------------------5th condition---------------------------------------------------
 app.put("/todos/:id/markAsCompleted", async function (request, response) {
   console.log("We have to update a Todo with ID: ", request.params.id);
   const todo = await Todo.findByPk(request.params.id);
@@ -93,6 +115,8 @@ app.put("/todos/:id/markAsCompleted", async function (request, response) {
     return response.status(422).json(error);
   }
 });
+
+//---------------------------------------------------------------------------------
 
 app.delete("/todos/:id", async function (request, response) {
   console.log("We have to delete a Todo with ID: ", request.params.id);

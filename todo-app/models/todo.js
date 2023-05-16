@@ -51,6 +51,20 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
     }
+    static completedTodo() {
+      return this.findAll({
+        where: {
+          completed: true,
+        },
+        order: [["id", "ASC"]],
+      });
+    }
+
+    setCompletionStatus(bool) {
+      let status = this.update({ completed: bool });
+      return status;
+    }
+
     //------------------------------------------------------------------------------------
 
     static async remove(id) {
