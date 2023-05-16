@@ -13,12 +13,13 @@
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content");
 
-      function updateTodo(id) {
-        fetch(`/todos/${id}/markAsCompleted`, {
+      function updateTodo(id, status) {
+        fetch(`/todos/${id}`, {
           method: "put",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             _csrf: token,
+            completed: status,
           }),
         })
           .then((res) => {
@@ -111,8 +112,8 @@
               >
                 <input id="todo-checkbox-<%=allTodos[i].id%>" type="checkbox"
                 <%=allTodos[i].completed ? "checked" : "" %>
-                onclick="updateTodo(<%=allTodos[i].id %> )" class="w-4 h-4
-                text-blue-600 bg-gray-100 rounded border" />
+                onclick="updateTodo(<%=allTodos[i].id %>, this.checked )"
+                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border" />
                 <label
                   for="todo-checkbox-<%=allTodos[i].id%>"
                   class="ml-2 text-gray-600 cursor-pointer"
@@ -164,8 +165,8 @@
               >
                 <input id="todo-checkbox-<%=allTodos[i].id%>" type="checkbox"
                 <%=allTodos[i].completed ? "checked" : "" %>
-                onclick="updateTodo(<%=allTodos[i].id %> )" class="w-4 h-4
-                text-blue-600 bg-gray-100 rounded border" />
+                onclick="updateTodo(<%=allTodos[i].id %> , this.checked)"
+                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border" />
                 <label
                   for="todo-checkbox-<%=allTodos[i].id%>"
                   class="ml-2 text-gray-600 cursor-pointer"
@@ -217,8 +218,8 @@
               >
                 <input id="todo-checkbox-<%=allTodos[i].id%>" type="checkbox"
                 <%=allTodos[i].completed ? "checked" : "" %>
-                onclick="updateTodo(<%=allTodos[i].id %>)" class="w-4 h-4
-                text-blue-600 bg-gray-100 rounded border" />
+                onclick="updateTodo(<%=allTodos[i].id %>, this.checked)"
+                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border" />
                 <label
                   for="todo-checkbox-<%=allTodos[i].id%>"
                   class="ml-2 text-gray-600 cursor-pointer"
@@ -262,8 +263,8 @@
               >
                 <input id="todo-checkbox-<%=allTodos[i].id%>" type="checkbox"
                 <%=allTodos[i].completed ? "checked" : "" %>
-                onclick="updateTodo(<%=allTodos[i].id %> )" class="w-4 h-4
-                text-blue-600 bg-gray-100 rounded border" />
+                onclick="updateTodo(<%=allTodos[i].id %> ,this.checked)"
+                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border" />
                 <label
                   for="todo-checkbox-<%=allTodos[i].id%>"
                   class="ml-2 text-gray-600 cursor-pointer"
