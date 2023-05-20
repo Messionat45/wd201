@@ -14,7 +14,7 @@ const connectEnsureLogin = require("connect-ensure-login");
 const session = require("express-session");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
-const { next } = require("cheerio/lib/api/traversing");
+//const { next } = require("cheerio/lib/api/traversing");
 
 const saltRounds = 10;
 
@@ -167,25 +167,26 @@ app.get("/signout", (request, response, next) => {
 //app.get("/", function (request, response) {
 //  response.send("Hello World");
 //});
+//-------------------------------------------------------------------------------------------20/5/23
+// app.get("/todos", async function (_request, response) {
+//   console.log("Processing list of all Todos ...");
+//   // FILL IN YOUR CODE HERE
+//   // Find all users
+//   try {
+//     const todo = await Todo.findAll();
+//     console.log(todo.every((todoitem) => todoitem instanceof Todo)); // true
+//     console.log("All todos:", JSON.stringify(todo, null, 2));
+//     return response.json(todo);
+//   } catch (error) {
+//     console.log(error);
+//     return response.status(422).json(error);
+//   }
+//   // First, we have to query our PostgerSQL database using Sequelize to get list of all Todos.
 
-app.get("/todos", async function (_request, response) {
-  console.log("Processing list of all Todos ...");
-  // FILL IN YOUR CODE HERE
-  // Find all users
-  try {
-    const todo = await Todo.findAll();
-    console.log(todo.every((todoitem) => todoitem instanceof Todo)); // true
-    console.log("All todos:", JSON.stringify(todo, null, 2));
-    return response.json(todo);
-  } catch (error) {
-    console.log(error);
-    return response.status(422).json(error);
-  }
-  // First, we have to query our PostgerSQL database using Sequelize to get list of all Todos.
-
-  // Then, we have to respond with all Todos, like:
-  // response.send(todos)
-});
+//   // Then, we have to respond with all Todos, like:
+//   // response.send(todos)
+// });
+//-------------------------------------------------------------------------------------
 
 app.get("/todos/:id", async function (request, response) {
   try {
