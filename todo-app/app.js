@@ -15,6 +15,19 @@ const session = require("express-session");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
 //const { next } = require("cheerio/lib/api/traversing");
+app.set("views", path.join(__dirname, "views"));
+
+const flash = require("connect-flash");
+
+app.use(flash());
+
+//res.render(req.flash(type, message));
+//----------------------app.flash--------------------------------
+app.use(function (request, response, next) {
+  response.locals.messages = request.flash();
+  next();
+});
+//-----------------------------------------
 
 const saltRounds = 10;
 
@@ -44,11 +57,11 @@ passport.use(
           if (result) {
             return done(null, user);
           } else {
-            return done("Invalid Password");
+            return done(null, false, { message: "Invalid password" });
           }
         })
         .catch((error) => {
-          return error;
+          return done(err);
         });
     }
   )
@@ -147,7 +160,10 @@ app.get("/login", (request, response) => {
 
 app.post(
   "/session",
-  passport.authenticate("local", { failureRedirect: "/login" }),
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
   (request, response) => {
     console.log(request.user);
     response.redirect("/todos");
