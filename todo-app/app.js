@@ -22,14 +22,6 @@ const flash = require("connect-flash");
 app.use(flash());
 
 //res.render(req.flash(type, message));
-//----------------------app.flash--------------------------------
-app.use(function (request, response, next) {
-  response.locals.messages = request.flash();
-  next();
-});
-//-----------------------------------------
-
-const saltRounds = 10;
 
 app.use(
   session({
@@ -39,6 +31,14 @@ app.use(
     },
   })
 );
+//----------------------app.flash--------------------------------
+app.use(function (request, response, next) {
+  response.locals.messages = request.flash();
+  next();
+});
+//-----------------------------------------
+
+const saltRounds = 10;
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -57,7 +57,7 @@ passport.use(
           if (result) {
             return done(null, user);
           } else {
-            return done(null, false, { message: "Invalid password" });
+            return done(null, false, { message: "Invalid Password" });
           }
         })
         .catch((error) => {
