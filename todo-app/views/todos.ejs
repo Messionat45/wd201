@@ -96,7 +96,12 @@
           <%-include('todo.ejs', {title: "Due Today", data: dueToday}) %>
           <%-include('todo.ejs', {title: "Due Later", data: dueLater}) %>
           <%-include('todo.ejs', {title: "Completed Items", data: completed}) %>
-
+          <div>  <% if(messages && messages.error && messages.error.length > 0)  { %>
+            <% for(var i=0; i<messages.error.length; i++) { %>
+                    <li> <%= messages.error %></li>
+            <% } %>
+            <% } %>
+          </div>
           <!-- -----------------------------------------------------------------------------------------------------------------
           <% let countOverdue = 0 %> <% for (let i = 0; i < allTodos.length;
           i++) { %> <% if (allTodos[i].dueDate < new

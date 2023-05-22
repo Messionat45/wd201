@@ -236,6 +236,7 @@ app.post(
         dueDate: request.body.dueDate,
         userId: request.user.id,
       });
+      return response.redirect("/todos");
     } catch (error) {
       // if(request.body.title.length < 5){}
 
