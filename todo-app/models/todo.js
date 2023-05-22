@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
      * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
+     * This method is not a part of Seq uelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
@@ -94,8 +94,14 @@ module.exports = (sequelize, DataTypes) => {
   Todo.init(
     {
       title: {
+        // type: DataTypes.STRING,
+        // allowNull: false,
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: true,
+          len: 5,
+        },
       },
 
       dueDate: {

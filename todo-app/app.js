@@ -20,6 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 const flash = require("connect-flash");
+const { title } = require("process");
 
 app.use(flash());
 
@@ -63,7 +64,7 @@ passport.use(
           }
         })
         .catch((error) => {
-          return done(err);
+          return done(error);
         });
     }
   )
@@ -118,6 +119,7 @@ app.get(
         dueLater,
         allTodos,
         completed,
+        //  csrfToken: request.csrfToken(),
       });
     }
   }
@@ -203,15 +205,19 @@ app.get("/signout", (request, response, next) => {
 // });
 //-------------------------------------------------------------------------------------
 
-app.get("/todos/:id", async function (request, response) {
-  try {
-    const todo = await Todo.findByPk(request.params.id);
-    return response.json(todo);
-  } catch (error) {
-    console.log(error);
-    return response.status(422).json(error);
+app.get(
+  "/todos/:id",
+  connectEnsureLogin.ensureLoggedIn(),
+  async function (request, response) {
+    try {
+      const todo = await Todo.findByPk(request.params.id);
+      return response.json(todo);
+    } catch (error) {
+      console.log(error);
+      return response.status(422).json(error);
+    }
   }
-});
+);
 
 app.post(
   "/todos",
@@ -219,16 +225,22 @@ app.post(
   async function (request, response) {
     console.log("Creating a todo", request.body);
     console.log(request.user);
+
+    if (request.body.title.length < 5) {
+      request.flash("error", "Error!! Title should be greater than 5 letter");
+      return response.redirect("/todos");
+    }
     try {
       await Todo.addTodo({
         title: request.body.title,
         dueDate: request.body.dueDate,
         userId: request.user.id,
       });
-      return response.redirect("/todos");
     } catch (error) {
+      // if(request.body.title.length < 5){}
+
       console.log(error);
-      return response.status(422).json(error);
+      //  return response.status(422).json(error);
     }
   }
 );
