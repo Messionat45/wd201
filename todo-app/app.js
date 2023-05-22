@@ -16,6 +16,8 @@ const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
 //const { next } = require("cheerio/lib/api/traversing");
 app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
 
 const flash = require("connect-flash");
 
@@ -81,10 +83,6 @@ passport.deserializeUser((id, done) => {
       done(error, null);
     });
 });
-
-app.set("view engine", "ejs");
-
-app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (request, response) => {
   response.render("index", {

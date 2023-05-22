@@ -93,14 +93,46 @@ module.exports = (sequelize, DataTypes) => {
   }
   Todo.init(
     {
-      title: DataTypes.STRING,
-      dueDate: DataTypes.DATEONLY,
-      completed: DataTypes.BOOLEAN,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      dueDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+
+      completed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       sequelize,
       modelName: "Todo",
     }
   );
+
+  //--------------------------------------------------
+  // const Todo = sequelize.define(
+  //   "Todo",
+  //   {
+  //     title: {
+  //       type: DataTypes.STRING,
+  //       allowNull: false,
+  //     },
+  //     dueDate: {
+  //       type: DataTypes.DATEONLY,
+  //     },
+  //     complete: {
+  //       type: DataTypes.BOOLEAN,
+  //       defaultValue: false,
+  //     },
+  //   },
+  //   {
+  //     tableName: "todo",
+  //   }
+  // );
   return Todo;
 };
