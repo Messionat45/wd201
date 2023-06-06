@@ -226,10 +226,17 @@ app.post(
     console.log("Creating a todo", request.body);
     console.log(request.user);
 
-    if (request.body.title.length < 5) {
+    if (request.body.title.length < 5 || request.body.title.length > 0) {
       request.flash("error", "Error!! Title should be greater than 5 letter");
       return response.redirect("/todos");
     }
+    // //-----------------------------------------------------duedate
+    // else if (request.body.title.length == 0 || request.body.dueDate == null) {
+    //   request.flash("error", "Todo title and date field should not be empty");
+    //   return response.redirect("/todos");
+    // }
+
+    ///------------------------------------------duedate fiih
     try {
       await Todo.addTodo({
         title: request.body.title,
